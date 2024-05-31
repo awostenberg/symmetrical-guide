@@ -9,4 +9,17 @@ describe("home page", () => {
         expect(screen.getByRole("heading").textContent).toContain("Home Page");
         
     })
+
+    it("has a button element", () => {
+
+        render(<Home />);
+
+        expect(screen.getByRole("button").textContent).toContain("Button");
+    
+    })
+
+    it.todo("has a daisy button element")
+
+    it.todo("clicks the button")
+    
 })

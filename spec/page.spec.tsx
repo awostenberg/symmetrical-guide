@@ -1,9 +1,6 @@
 
 import { render, screen } from "@testing-library/react";
 import Home from "../src/app/page";
-//import {toHaveClass} from "@testing-library/jest-dom/extend-expect"
-
-//import "@testing-library/jest-dom/extend-expect"
 
 describe("home page", () => {
     it("renders the heading", () => {
@@ -38,6 +35,11 @@ describe("home page", () => {
     it.todo("tailwind css warnings upon require('daisyui') ")
     /* warn - As of Tailwind CSS v3.0, `blueGray` has been renamed to `slate`.
         warn - Update your configuration file to silence this warning.
+        
+        noticed after loc 222 change of trimming down app/globals.css this warning is gone,
+        but warning still gone on reverting that change, so I don't think that did the trick. 
+        Perhaps warning is one-time and still ther? Test that with an /rm -f node_modules/ followed by /npm install/
+       
     */
     
 })

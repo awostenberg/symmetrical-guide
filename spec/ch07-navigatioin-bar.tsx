@@ -5,4 +5,6 @@ describe("customize navigation bar", () => {
 
     it.todo("links about page loc.386")
     it.todo("links contact page loc.386")
+    it.todo("links github users loc.386")
+    
 })

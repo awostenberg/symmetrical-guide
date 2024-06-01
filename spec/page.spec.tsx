@@ -70,4 +70,6 @@ describe("home page", () => {
        
     */
 
+    it.todo("renders navbar on every page (ch 5)")
+        //made but not tdd
 })

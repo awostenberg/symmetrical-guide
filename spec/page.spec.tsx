@@ -8,7 +8,6 @@ describe("home page", () => {
 
         expect(screen.getByRole("heading").textContent).toContain("Home Page");
 
-       
     })
 
     it("has a button element", () => {
@@ -16,8 +15,7 @@ describe("home page", () => {
         render(<Home />);
 
         expect(screen.getByRole("button").textContent).toContain("Button");
-    
-  
+
     })
 
     it("has a daisy button element", () => {
@@ -25,10 +23,10 @@ describe("home page", () => {
         render(<Home />);
         const button = screen.getByRole("button");
         expect(button.getAttribute("class")).toContain("btn btn-primary"); //https://stackoverflow.com/a/72354391
-             // above way because toHaveClass did not work as expected https://tinyurl.com/mtrt5c7d
+        // above way because toHaveClass did not work as expected https://tinyurl.com/mtrt5c7d
 
     })
- 
+
 
     it.todo("clicks the button")
 
@@ -37,20 +35,27 @@ describe("home page", () => {
         render(<Home />);
 
         const listElements = document.querySelector("ul");
-        expect(listElements).not.toBeNull();  
-       
+        expect(listElements).not.toBeNull();
+
     })
 
-    it("renders two of li",() => {
+    const homePageListItems = () => {
         render(<Home />)
+        const listItems = document.querySelectorAll("ul > li")
+        return listItems
+    }
+    it("renders two of li", () =>
+        expect(homePageListItems()).toHaveLength(2)
+    )
 
-        const listItems = document.querySelectorAll("ul > li");
-        expect(listItems).toHaveLength(2);
-      
-    })
-    it.todo("renders an li with a link to about");
-    
-    it.todo("renders an li with link to home")
+    it("renders an li with link to home", () =>
+        //todo how to test for <Link>?
+        expect(homePageListItems()[0].textContent).toContain("Home")
+    )
+
+    it("renders an li with a link to about", () =>
+        expect(homePageListItems()[1].textContent).toContain("About")
+    )
 
     it.todo("tailwind css warnings upon require('daisyui') ")
     /* warn - As of Tailwind CSS v3.0, `blueGray` has been renamed to `slate`.
@@ -61,5 +66,5 @@ describe("home page", () => {
         Perhaps warning is one-time and still ther? Test that with an /rm -f node_modules/ followed by /npm install/
        
     */
-    
+
 })

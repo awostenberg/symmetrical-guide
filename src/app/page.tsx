@@ -1,11 +1,14 @@
+import Link from "next/link";
+
 const Home = () => {
   return(
     <div>
       <h1>Home Page</h1>
       <button className="btn btn-primary">Button</button>
       <ul>
-        <li> </li>
-        <li> </li>
+        <li> <Link href="/">Home</Link>  </li>
+        <li> <Link href="/about">About</Link>   </li>
+       
       </ul>
     </div>
   )

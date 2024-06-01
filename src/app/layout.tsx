@@ -22,7 +22,7 @@ export default function RootLayout({
 
         <div className="navbar bg-base-100">
           <div className="flex-1">
-            <a className="btn btn-ghost text-xl">daisyUI</a>
+            <Link href="/" className="btn btn-ghost text-xl">Greg's portfolio of small bets</Link>
           </div>
           <div className="flex-none">
             <ul className="menu menu-horizontal px-1">

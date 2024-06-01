@@ -4,4 +4,5 @@
             it.todo("has description")
             it.todo("has keywords")
           
+            it.todo("customize metadata for about page (loc 334)")
         })

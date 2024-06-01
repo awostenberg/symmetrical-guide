@@ -32,6 +32,18 @@ describe("home page", () => {
 
     it.todo("clicks the button")
 
+    it("renders a ul", () => {
+
+        render(<Home />);
+
+        const listElements = document.querySelector("ul");
+        expect(listElements).not.toBeNull();  
+       
+    })
+
+    it.todo("renders an li with a link to about")
+    it.todo("renders an li with link to home")
+
     it.todo("tailwind css warnings upon require('daisyui') ")
     /* warn - As of Tailwind CSS v3.0, `blueGray` has been renamed to `slate`.
         warn - Update your configuration file to silence this warning.

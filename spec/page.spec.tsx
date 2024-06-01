@@ -44,8 +44,8 @@ describe("home page", () => {
         const listItems = document.querySelectorAll("ul > li")
         return listItems
     }
-    it("renders two of li", () =>
-        expect(homePageListItems()).toHaveLength(2)
+    it("renders thhree of li", () =>
+        expect(homePageListItems()).toHaveLength(3)
     )
 
     it("renders an li with link to home", () =>
@@ -57,6 +57,9 @@ describe("home page", () => {
         expect(homePageListItems()[1].textContent).toContain("About")
     )
 
+    it("renders an li with a link to contact", () =>
+        expect(homePageListItems()[2].textContent).toContain("Contact")
+    )
     it.todo("tailwind css warnings upon require('daisyui') ")
     /* warn - As of Tailwind CSS v3.0, `blueGray` has been renamed to `slate`.
         warn - Update your configuration file to silence this warning.

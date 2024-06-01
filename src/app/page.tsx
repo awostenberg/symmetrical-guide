@@ -3,7 +3,10 @@ const Home = () => {
     <div>
       <h1>Home Page</h1>
       <button className="btn btn-primary">Button</button>
-      <ul></ul>
+      <ul>
+        <li> </li>
+        <li> </li>
+      </ul>
     </div>
   )
 }

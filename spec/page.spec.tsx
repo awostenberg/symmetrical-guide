@@ -41,7 +41,15 @@ describe("home page", () => {
        
     })
 
-    it.todo("renders an li with a link to about")
+    it("renders two of li",() => {
+        render(<Home />)
+
+        const listItems = document.querySelectorAll("ul > li");
+        expect(listItems).toHaveLength(2);
+      
+    })
+    it.todo("renders an li with a link to about");
+    
     it.todo("renders an li with link to home")
 
     it.todo("tailwind css warnings upon require('daisyui') ")

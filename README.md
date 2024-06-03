@@ -1,5 +1,11 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## TDD in states and moves
+
+![tdd in states and moves](http://tinyurl.com/bdhk8apt)
+
+Working through Greg Lim's [NextJS13 and React](https://www.amazon.com/NextJS-13-React-Crash-Course-ebook/dp/B0CG67TMLX/ref=sr_1_1?sr=8-1) the TDD way.
+
 ## Getting Started
 
 First, run the development server:

@@ -6,7 +6,7 @@ async function fetchGitHubUsers() {
 }
 const GitHubUsers =  async () => {
     const users = await fetchGitHubUsers();
-    console.log(users); //not seeing this in the terminal users log loc.
+    //console.log(users); /see in log if cache clear4ed
     return (
         <div>
             <h1>GitHub Users Page</h1>

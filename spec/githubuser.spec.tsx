@@ -100,9 +100,7 @@ describe("github user", () => {
 
         expect(screen.getByRole('img'));
  
-        //I noticed here it has many rows... 30 in fact.
-        //not seeming to use the mock but real git api.
-        //and these  tests taking 2s to run
+
     });
 
     it.todo('renders GitHub url');

@@ -85,7 +85,18 @@ describe("github user",() => {
         expect(screen.getByText("greg"));
 
     });
-    it.todo('renders avatar');
+    it('renders avatar', async () => {
+        fetchMock.mockResponseOnce(JSON.stringify(greg));
+        const jsx = await GitHubUsers();
+
+        render(jsx);
+
+        
+        expect(screen.getAllByRole('img').length).toBeGreaterThan(0); 
+        //I noticed here it has many rows... 30 in fact.
+        //not seeming to use the mock but real git api.
+        //and these  tests taking 2s to run
+    });
     
     it.todo('renders GitHub url');
     it.todo('renders repository');   //unsure how this differs from above

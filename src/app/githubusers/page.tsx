@@ -26,7 +26,24 @@ const GitHubUsers = async () => {
                         {users.map((user) => (
 
                             <tr key={user.id}>
-                                <td>{user.login}</td>
+                                <td>
+                                    <div className="flex items-center space-x-3">
+                                        <div className="avatar">
+                                            <div>
+                                                <div className="mask mask-squircle w-12 h-12">
+                                                    <img src={user.avatar_url} />
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div>
+                                            {user.login}
+
+                                        </div>
+
+                                    </div>
+                                </td>
                                 <td>Quality Control Specialist</td>
                                 <td>Blue</td>
                             </tr>

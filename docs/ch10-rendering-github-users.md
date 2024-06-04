@@ -164,3 +164,22 @@ Sapiential test passing as well. Wait, no, name is not under name headline. Remo
                     </thead>
 
 sapiential test pass.
+
+
+### loc.566 avatar and it seems no mocking
+
+passing sapiential test avatar ✅
+
+jest test ```     expect(screen.getByRole('img'));``` 
+does not pass because there are many (30).
+But adjusting it, this jest passes 
+
+```      expect(screen.getAllByRole('img').length).toBeGreaterThan(0); ```
+ 
+
+I notice  here it has many rows... it is not seeming to use the mock
+but real git api. Also, these tests are taking 2s to run.
+
+
+
+

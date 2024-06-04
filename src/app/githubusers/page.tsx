@@ -27,7 +27,7 @@ const GitHubUsers = async () => {
                         {/* row 1 */}
                         <tr>
                             <th>1</th>
-                            <td>greg</td>
+                            <td>{users[0].login}</td>
                             <td>Quality Control Specialist</td>
                             <td>Blue</td>
                         </tr>

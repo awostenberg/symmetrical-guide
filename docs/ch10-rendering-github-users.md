@@ -100,14 +100,18 @@ I trigger a test run, npm test passing. Not sure what to make of this.
 
 Tentative: watching tests seems fragileseems fragile with the mocks.
 changing this, watching wallaby.. and getting the 
-```TypeError TypeError: Cannot read properties of undefined (reading ```'0') on npm triggered test. Wallaby now off. npm test watch seems reliable with wallaby off. 
+```TypeError TypeError: Cannot read properties of undefined (reading '0') ``` on npm triggered test. Wallaby now off. npm test watch seems reliable with wallaby off. 
 
 Tentative: interaction between wallaby, async, jest-mock. I wonder if it is wallaby interrupting? some singleton? I'm typing this, no failures (but, wait, this is an .md file; does that trigger runs? Or only watch) (it does not) ... and wallaby back to it's type error (don't know what caused it... small non-consequential change to code "just a comment") and now npm test is stuck on fail as well, even when triggering? yes. even when triggering. The cure is stop wallaby.
 
 making changes, wallaby off, npm test watch on, working fine. 
 
-Tentative solution: don't use wallaby. 
+### bye bye wallaby for now
+Provisional solution: don't use wallaby. Unhardwired *greg* string and slightly less hardwired users[0].login. This means can't use wallaby for now.
 
+Possible better solution from [copilot](https://www.perplexity.ai/search/any-known-problems-ohdxlgKGQgqWEz0dnId_Vg)
+"1) wrap your API calls in thin functions that you own, and mock those functions instead of mocking the global fetch directly.
+2)Alternatively, you could consider using other libraries like nock  or msw (Mock Service Worker) instead of fetch-mock, as they may have better compatibility with Wallaby and Jest for mocking asynchronous network requests"
 
 
 

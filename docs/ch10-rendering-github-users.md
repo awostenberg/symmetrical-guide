@@ -46,3 +46,12 @@ ok the ```export const GitHubUsers =  async () => {...}```  meant I did not need
         expect(items).toHaveLength(1)
     })
 ```
+
+## loc 550 return to Daisy
+
+having noted ```it.todo()```, return to sapiential testing with Lim.  Maybe after put back in some trivial test, that checkbox label looks promising ... it has some headlines ("name", "job"...) look proomising for expects. aha here at loc.569 Lim has us giving headers.. Name; URL; Repos;
+
+
+"Copy the Table component markup for DaisyUI".. -Lim.  
+
+Minimal for this? assert it contains..Name anywhere in there

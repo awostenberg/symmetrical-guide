@@ -80,6 +80,15 @@ describe("github user",() => {
     it.todo('renders GitHub url');
     it.todo('renders repository');   //unsure how this differs from above
     
-    it.todo('renders using DaisyUI table component');
+    it('renders using DaisyUI table component', async () => {
+        fetchMock.mockResponseOnce(JSON.stringify(greg));
+        const jsx = await GitHubUsers();
+
+        render(jsx);
+
+        expect(screen.getByText("Name"))
+        //better: th > ... 
+    });
     
+    it.todo("renders something with a link")
 })

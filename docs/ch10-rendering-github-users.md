@@ -196,3 +196,5 @@ and to also avoid test interference by clearing
         });
 
 Wallaby is back.
+
+### loc.681 render github profile url

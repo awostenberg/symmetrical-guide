@@ -1,4 +1,6 @@
 
+import Link from 'next/link';
+
 const fetchGitHubUsers = async () => {
     const res = await fetch("https://api.github.com/search/users?q=greg");
     const json = await res.json();
@@ -44,7 +46,12 @@ const GitHubUsers = async () => {
 
                                     </div>
                                 </td>
-                                <td>Quality Control Specialist</td>
+                                <td>
+                                    <Link href={user.html_url} className="btn btn-link">
+                                    View on GitHub
+                                    </Link>
+                                
+                                </td>
                                 <td>Blue</td>
                             </tr>
                         ))}

@@ -103,7 +103,15 @@ describe("github user", () => {
 
     });
 
-    it.todo('renders GitHub url');
+    it('renders GitHub profile url', async() => {
+        fetchMock.mockResponseOnce(JSON.stringify(greg));
+        const jsx = await GitHubUsers();
+
+        render(jsx);
+        expect(screen.getByText("View on GitHub"));
+            //^^todo figure out how to check for </Link>
+    
+    });
     it.todo('renders repository');   //unsure how this differs from above
 
     it('renders using DaisyUI table component', async () => {

@@ -26,7 +26,7 @@ I notice in Wallaby a white box - line not covered in page.tsx
 and yellow on last line
     export default GitHubUsers
 
-was it console.log? the refactoring of async functino fetchGetHubUsers to const f = async()...?? the two imports in test?  I revert page.tsx const to async function, comment 2nd import, no joy, exit and  wallaby, green box, no yellow caution
+was it console.log? the refactoring of async function fetchGetHubUsers to const f = async()...?? the two imports in test?  I revert page.tsx const to async function, comment 2nd import, no joy, exit and  wallaby, green box, no yellow caution
 
 mabye it's the double export... the combo of export default and another that is imported?
 let's remove that ```export default GitHubUsers``` (working from green state) and.. I get the error "not a module"

@@ -180,6 +180,19 @@ But adjusting it, this jest passes
 I notice  here it has many rows... it is not seeming to use the mock
 but real git api. Also, these tests are taking 2s to run.
 
+### loc.566 mock on and wallaby is back
+
+Why? Forgot [teacher said](https://www.marcusoft.net/2022/11/nextjs-testing-async-react-components.html) to enable mocks:
+
+    import fetchMock from "jest-fetch-mock";
+    fetchMock.enableMocks();
 
 
+and to also avoid test interference by clearing 
+    describe("github user", () => {
 
+        beforeEach(() => {
+            fetchMock.resetMocks();
+        });
+
+Wallaby is back.

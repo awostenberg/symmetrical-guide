@@ -55,3 +55,6 @@ having noted ```it.todo()```, return to sapiential testing with Lim.  Maybe afte
 "Copy the Table component markup for DaisyUI".. -Lim.  
 
 Minimal for this? assert it contains..Name anywhere in there
+pass.
+
+But //fails sapiential testing .. I am not seeing that table in brave; firefox? I do. Now, I seeit ugly, in brave. 

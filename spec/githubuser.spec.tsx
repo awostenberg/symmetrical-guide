@@ -82,7 +82,7 @@ describe("github user", () => {
 
 
 
-    it.todo('renders github user profile picture');
+
     it('renders name', async () => {
         fetchMock.mockResponseOnce(JSON.stringify(greg));
         const jsx = await GitHubUsers();
@@ -92,7 +92,7 @@ describe("github user", () => {
         expect(screen.getByText("greg"));
 
     });
-    it('renders avatar', async () => {
+    it('renders github user profile picture', async () => {
         fetchMock.mockResponseOnce(JSON.stringify(greg));
         const jsx = await GitHubUsers();
 

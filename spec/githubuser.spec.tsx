@@ -76,7 +76,17 @@ describe("github user",() => {
 
 
     it.todo('renders github user profile picture');
-    it.todo('renders name');
+    it('renders name', async () => {
+        fetchMock.mockResponseOnce(JSON.stringify(greg));
+        const jsx = await GitHubUsers();
+
+        render(jsx);
+
+        expect(screen.getByText("greg"));
+
+    });
+    it.todo('renders avatar');
+    
     it.todo('renders GitHub url');
     it.todo('renders repository');   //unsure how this differs from above
     

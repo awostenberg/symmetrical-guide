@@ -22,11 +22,12 @@ const GitHubUsers = async () => {
                             <th>Favorite Color</th>
                         </tr>
                     </thead>
+                    
                     <tbody>
                         {/* row 1 */}
                         <tr>
                             <th>1</th>
-                            <td>Cy Ganderton</td>
+                            <td>greg</td>
                             <td>Quality Control Specialist</td>
                             <td>Blue</td>
                         </tr>

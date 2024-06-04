@@ -57,4 +57,4 @@ having noted ```it.todo()```, return to sapiential testing with Lim.  Maybe afte
 Minimal for this? assert it contains..Name anywhere in there
 pass.
 
-But //fails sapiential testing .. I am not seeing that table in brave; firefox? I do. Now, I seeit ugly, in brave. 
+But //fails sapiential testing .. I am not seeing that table in brave; firefox? I do. Now, I seeit ugly, in brave. Refresh. See it prettier, in brave.

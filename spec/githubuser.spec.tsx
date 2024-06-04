@@ -10,6 +10,8 @@ describe("github user", () => {
 
     beforeEach(() => {
         fetchMock.resetMocks();
+        fetchMock.mockResponseOnce(JSON.stringify(greg));
+       
     });
 
     // how to render for test that which is async server side?
@@ -52,10 +54,9 @@ describe("github user", () => {
         //And we know what to do with functions: we just call them using ().
         //for the tl;dr, see https://www.marcusoft.net/2022/11/nextjs-testing-async-react-components.html
         //but then it fails on fetch, most likely because jest-environment-jsdom is not really a browser, 
-        //so we mock it out, with data called greg
+        //so we mock it out, with data called greg, 
+        //in the beforeEach fetchMock.mockResponseOnce(JSON.stringify(greg));
 
-
-        fetchMock.mockResponseOnce(JSON.stringify(greg));
         const jsx = await GitHubUsers();
 
         render(jsx);
@@ -84,7 +85,7 @@ describe("github user", () => {
 
 
     it('renders name', async () => {
-        fetchMock.mockResponseOnce(JSON.stringify(greg));
+
         const jsx = await GitHubUsers();
 
         render(jsx);
@@ -93,7 +94,7 @@ describe("github user", () => {
 
     });
     it('renders github user profile picture', async () => {
-        fetchMock.mockResponseOnce(JSON.stringify(greg));
+
         const jsx = await GitHubUsers();
 
         render(jsx);
@@ -104,7 +105,7 @@ describe("github user", () => {
     });
 
     it('renders GitHub profile url', async() => {
-        fetchMock.mockResponseOnce(JSON.stringify(greg));
+   
         const jsx = await GitHubUsers();
 
         render(jsx);
@@ -112,10 +113,17 @@ describe("github user", () => {
             //^^todo figure out how to check for </Link>
     
     });
-    it.todo('renders repository');   //unsure how this differs from above
+    it('renders repository', async () => {
+
+        const jsx = await GitHubUsers();
+
+        render(jsx);
+
+        expect(screen.getByText("Go to Repos"))
+    });  
 
     it('renders using DaisyUI table component', async () => {
-        fetchMock.mockResponseOnce(JSON.stringify(greg));
+
         const jsx = await GitHubUsers();
 
         render(jsx);
@@ -124,5 +132,5 @@ describe("github user", () => {
         //better: th > ... 
     });
 
-    it.todo("renders something with a link")
+
 })

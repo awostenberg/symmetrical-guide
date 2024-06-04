@@ -20,7 +20,7 @@ const GitHubUsers = async () => {
                         <tr>
                             <th>Name</th>
                             <th>Job</th>
-                            <th>Favorite Color</th>
+                            <th>Repos</th>
                         </tr>
                     </thead>
 
@@ -52,7 +52,7 @@ const GitHubUsers = async () => {
                                     </Link>
                                 
                                 </td>
-                                <td>Blue</td>
+                                <td>Go to Repos</td>
                             </tr>
                         ))}
 

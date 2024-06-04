@@ -58,3 +58,56 @@ Minimal for this? assert it contains..Name anywhere in there
 pass.
 
 But //fails sapiential testing .. I am not seeing that table in brave; firefox? I do. Now, I seeit ugly, in brave. Refresh. See it prettier, in brave.
+
+## loc.566 render greg
+
+Hardcoded from daisy, tr row 1 to be hardcoded greg, pass, change to be
+
+```               <tr>
+                            <th>1</th>
+                            <td>grr {users[0].login} ggg</td>
+                            <td>Quality Control Specialist</td>
+                            <td>Blue</td>
+                        </tr>
+```
+
+While I get a jest test error ("...") it does pass sapiential testing.
+
+This tells me the jest mocks are a little off.
+
+To test that hypothesis, let us put const greg in the page.tsx ..
+
+```
+    const fetchGitHubUsers = async () => {
+        const res = await fetch("https://api.github.com/search/users?q=greg");
+        const json = await res.json();  //why two awaits? Isn't one enough?
+        //return json.items;
+
+        return greg.items;
+        
+    };
+```
+
+pass jest.
+I wonder: why two awaits? Remove second, different error. Back to main.
+
+Is it stringify? I suspect that. Return to it tomorrow.
+but wait. I notice an npm test works. Not so wallaby. Both are jest. This suggests wallaby interaction. And as I type this, wallably jest is failing. 
+
+and now, wallaby off, ```npm test -- --watchAll```, I make these changes, and npm test begins to fail. 
+
+I trigger a test run, npm test passing. Not sure what to make of this. 
+
+Tentative: watching tests seems fragileseems fragile with the mocks.
+changing this, watching wallaby.. and getting the 
+```TypeError TypeError: Cannot read properties of undefined (reading ```'0') on npm triggered test. Wallaby now off. npm test watch seems reliable with wallaby off. 
+
+Tentative: interaction between wallaby, async, jest-mock. I wonder if it is wallaby interrupting? some singleton? I'm typing this, no failures (but, wait, this is an .md file; does that trigger runs? Or only watch) (it does not) ... and wallaby back to it's type error (don't know what caused it... small non-consequential change to code "just a comment") and now npm test is stuck on fail as well, even when triggering? yes. even when triggering. The cure is stop wallaby.
+
+making changes, wallaby off, npm test watch on, working fine. 
+
+Tentative solution: don't use wallaby. 
+
+
+
+

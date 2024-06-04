@@ -114,4 +114,53 @@ Possible better solution from [copilot](https://www.perplexity.ai/search/any-kno
 2)Alternatively, you could consider using other libraries like nock  or msw (Mock Service Worker) instead of fetch-mock, as they may have better compatibility with Wallaby and Jest for mocking asynchronous network requests"
 
 
+### iterating users for user name
+I iterate through users in the tbody 
+                    <tbody>
+                        {/* row 1 */}
+                        {users.map((user) => (
 
+                            <tr >
+                                <th>1</th>
+                                <td>{users[0].login}</td>
+                                <td>Quality Control Specialist</td>
+                                <td>Blue</td>
+                            </tr>
+                        ))}
+
+                    </tbody>
+
+and get about 30 of greg in jest. Puzzling. Sapiential? Same. Expected there -- I'm not using any mocks. But in jest? Am I not mocking? Hm..
+
+I replace```<td>{users[0].login}</td>``` with  ```  <td>{user.login}</td>``` get a better jest error, "each child in a list should hvea u nique key property" and "check the top-level render call" (it's that th..don't need it
+
+I make the change, 
+
+                    <tbody>
+                        {users.map((user) => (
+
+                            <tr key={user.id}>
+                                <td>{user.login}</td>
+                                <td>Quality Control Specialist</td>
+                                <td>Blue</td>
+                            </tr>
+                        ))}
+
+                    </tbody>
+
+and get our old friend
+```TypeError: Cannot read properties of undefined (reading 'map')```
+trigger npm test, which passes.
+
+Sapiential test passing as well. Wait, no, name is not under name headline. Remove that extra th in thead making it 3 not 4:
+
+               <thead>
+                        <tr>
+    
+                            <th>Name</th>
+                            <th>Job</th>
+                            <th>Favorite Color</th>
+                        </tr>
+                    </thead>
+
+sapiential test pass.

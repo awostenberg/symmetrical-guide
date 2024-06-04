@@ -1,7 +1,7 @@
 
 import { render, screen } from "@testing-library/react";
 import GitHubUsers from "../src/app/githubusers/page";
-import fetchGitHubUsers from "../src/app/githubusers/page"
+import fetchGitHubUsers from "../src/app/githubusers/page";
 
 import fetchMock from "jest-fetch-mock";
 

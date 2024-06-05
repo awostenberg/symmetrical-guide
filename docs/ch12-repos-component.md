@@ -1,13 +1,25 @@
-ch12-repos-component
+# chapter 12 repos component
+
+## initial test list
 
 "create a component that retrieves and lists user's repositories"
 
 "In our 'app' directory, we'll create a new component's folder.." - lim
 
-How'd apply I in ZOMBIE and program to the interface. But first, maybe write this, grab a snapshot of output [api.github.com/users/greg](https://api.github.com/users/greg), then redo tdd.
+
+
+
+
+
+First, I need that file for even the todo, make them:
+```bash
+ mkdir src/app/components
+ touch src/app/components/repos.spec.tsx
+```
 
 
 Say it as a todo
+
 
 ```tsx
 
@@ -25,19 +37,17 @@ describe('repos component', () => {
     
 ```
 
-I want to program to an interface... and that component will implement the interface, so will my hardcoded one (the one greg)... Things I don't understand
+How to apply *i* in [ZOMBIES](https://blog.wingman-sw.com/tdd-guided-by-zombies) and program to the interface?
+
+But first, maybe write this, grab a snapshot of output [api.github.com/users/greg](https://api.github.com/users/greg), then redo tdd?
+
+I want to program to an interface... and that component will implement the interface, so will my hardcoded one (the one greg)... Things I yet don't understand well enough to write the test:
 1. typescript interface
-2. how to injectt into nextJS
+2. how to inject into nextJS
 
-(this may not be necessary, for I know with fetch mock from a previous chapter how to write it for real)
+But, wait, this interface may not be necessary just now. for I know with fetch mock from a previous chapter how to write it for real, how to mock out the fetch.
 
 
-Ok mabye table interface, fetch is working nicely, test will be adjacent to cut,
 
-I need that file for even the todo, so
-```bash
- mkdir src/app/components
- touch src/app/components/repos.spec.tsx
-```
+Or I could write it hardcoded by-the-lim-book, get test to pass, and take it as a refactoring to pull out the fetch mock.
 
-Or I could write it hardcoded by-the-lim-book, get test to pass, and take it as a refactoring to pull out the fetch mock..

@@ -51,3 +51,65 @@ But, wait, this interface may not be necessary just now. for I know with fetch m
 
 Or I could write it hardcoded by-the-lim-book, get test to pass, and take it as a refactoring to pull out the fetch mock.
 
+## loc.783 one greg
+
+It's going to have a table element with columns. 
+I'll start with headline for greg. 
+
+I'll start with headline
+```tsx
+it('fetches and renders one repo greg', () => {
+        render(<Repos user='greg' />);     
+    });
+```
+
+To fix compile error requires includes
+```tsx
+import { render, screen } from "@testing-library/react";
+import Repos from './repos';
+```
+
+and the cut file
+```bash 
+touch src/app/components/repos.tsx   
+```
+
+and it's code
+```tsx
+const Repos = ({user}) => {
+    return(<div></div>)
+}
+
+export default Repos
+```
+
+It now compiles. Let's write that assert for the  to cause is to render greg's name
+Here I'm drifting a little bit from teacher Lim, who did not have greg's name in headline. 
+
+```tsx
+ expect(screen.getByRole('heading').textContent).toContain('Repos for greg')
+```
+
+And watch the test fail for the right reason "unable to find an accessable role 'heading'..."
+
+We can control the tdd step size by writing just the h1 into ```repos.tsx```
+
+```tsx
+ return(<div><h1></h1></div>)
+```
+
+And should now see the new test failure *Expected substring: "Repos for greg" Received string:    ""*
+
+code up ```repos.tsx```
+```tsx
+        <div>
+            <h1>Repos for {user}</h1>
+        </div>)
+```
+
+And watch it pass. 
+
+But does it pass *all* the tests -- even compiler warnings? No. Notice the compiler red squiggly warning over user in the ```repos.txt``? It says "binding element _user_ implicitly has an 'any' type. I don't know how to fix that today, and neither does [copilot](https://www.perplexity.ai/search/in-typescript-destructuring-B9g01i56SIGm4gwsu2.dEg)
+
+Commit unit with F1 notation. "many more smaller steps" as [Geepaw](https://www.geepawhill.org/series/many-more-much-smaller-steps/) says.
+

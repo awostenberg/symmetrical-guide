@@ -21,3 +21,10 @@ passing the props
 
     })
 ```
+
+## true links
+
+sapiential testing reveals an directory structure mistake. ```[users]``` belongs in ```src/app/githubusers/``` To correct
+```bash
+git mv src/app/\[user\] src/app/githubusers/\[user\]    
+```

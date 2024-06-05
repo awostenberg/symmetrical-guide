@@ -47,4 +47,3 @@ with loc.737 corrections to ```githubusers/[user]page.tsx```
 
 ### sapiential test
 Jest did not click the link. Visit the page and try it out. Should pass. (Earlier I found a mistake in the path to ```[user]``` but this is corrected in instructions)
-

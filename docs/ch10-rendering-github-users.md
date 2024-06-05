@@ -5,8 +5,9 @@ ch10-rendering github users
 
 "Let's examine how to render and outupt the fetched users..." -Lim
 
-As always, let's write the initial test list first. A few ```it.todo()`` suffice
-``` describe("githubusers")
+As always, let's write the initial test list first. A few ```it.todo()``` suffice
+```ts
+describe("githubusers")
     it.todo("renders github user profile picture")
     it.todo("renders name")
     it.todo("renders GitHub URL")
@@ -35,7 +36,7 @@ I read "is supported, most style guides and experts recommend favoring named exp
 
 ok the ```export const GitHubUsers =  async () => {...}```  meant I did not need ```export default GitHubUsers``` and tests pass, but now, sapiential test (aka end to end) shows an error "the default export is not a React component in page: "/githubusers", which is true, so I attempt to make it so with ```export default const GitHubUsers = ...``` but get a typescript error and fail to compile. So table this. Leaving this as a skip and returning to sapiential test
 
-```
+```ts
    it.skip('fetches only github items', async () => {
         fetchMock.mockResponseOnce(JSON.stringify(greg));
         
@@ -63,12 +64,13 @@ But //fails sapiential testing .. I am not seeing that table in brave; firefox? 
 
 Hardcoded from daisy, tr row 1 to be hardcoded greg, pass, change to be
 
-```               <tr>
-                            <th>1</th>
-                            <td>grr {users[0].login} ggg</td>
-                            <td>Quality Control Specialist</td>
-                            <td>Blue</td>
-                        </tr>
+```tsx
+    <tr>
+        <th>1</th>
+        <td>grr {users[0].login} ggg</td>
+        <td>Quality Control Specialist</td>
+        <td>Blue</td>
+    </tr>
 ```
 
 While I get a jest test error ("...") it does pass sapiential testing.
@@ -77,7 +79,7 @@ This tells me the jest mocks are a little off.
 
 To test that hypothesis, let us put const greg in the page.tsx ..
 
-```
+```ts
     const fetchGitHubUsers = async () => {
         const res = await fetch("https://api.github.com/search/users?q=greg");
         const json = await res.json();  //why two awaits? Isn't one enough?
@@ -115,54 +117,57 @@ Possible better solution from [copilot](https://www.perplexity.ai/search/any-kno
 
 
 ### iterating users for user name
-I iterate through users in the tbody 
-                    <tbody>
-                        {/* row 1 */}
-                        {users.map((user) => (
+I iterate through users in the tbody
+```tsx 
+    <tbody>
+        {/* row 1 */}
+        {users.map((user) => (
 
-                            <tr >
-                                <th>1</th>
-                                <td>{users[0].login}</td>
-                                <td>Quality Control Specialist</td>
-                                <td>Blue</td>
-                            </tr>
-                        ))}
+            <tr >
+                <th>1</th>
+                <td>{users[0].login}</td>
+                <td>Quality Control Specialist</td>
+                <td>Blue</td>
+            </tr>
+        ))}
 
-                    </tbody>
+    </tbody>
+```
 
 and get about 30 of greg in jest. Puzzling. Sapiential? Same. Expected there -- I'm not using any mocks. But in jest? Am I not mocking? Hm..
 
 I replace```<td>{users[0].login}</td>``` with  ```  <td>{user.login}</td>``` get a better jest error, "each child in a list should hvea u nique key property" and "check the top-level render call" (it's that th..don't need it
 
 I make the change, 
+```tsx
+    <tbody>
+        {users.map((user) => (
 
-                    <tbody>
-                        {users.map((user) => (
+            <tr key={user.id}>
+                <td>{user.login}</td>
+                <td>Quality Control Specialist</td>
+                <td>Blue</td>
+            </tr>
+        ))}
 
-                            <tr key={user.id}>
-                                <td>{user.login}</td>
-                                <td>Quality Control Specialist</td>
-                                <td>Blue</td>
-                            </tr>
-                        ))}
-
-                    </tbody>
+    </tbody>
+```
 
 and get our old friend
 ```TypeError: Cannot read properties of undefined (reading 'map')```
 trigger npm test, which passes.
 
 Sapiential test passing as well. Wait, no, name is not under name headline. Remove that extra th in thead making it 3 not 4:
+```tsx
+    <thead>
+            <tr>
 
-               <thead>
-                        <tr>
-    
-                            <th>Name</th>
-                            <th>Job</th>
-                            <th>Favorite Color</th>
-                        </tr>
-                    </thead>
-
+                <th>Name</th>
+                <th>Job</th>
+                <th>Favorite Color</th>
+            </tr>
+        </thead>
+```
 sapiential test pass.
 
 
@@ -188,12 +193,14 @@ Why? Forgot [teacher said](https://www.marcusoft.net/2022/11/nextjs-testing-asyn
     fetchMock.enableMocks();
 
 
-and to also avoid test interference by clearing 
+and to also avoid test interference by clearing
+```ts 
     describe("github user", () => {
 
         beforeEach(() => {
             fetchMock.resetMocks();
         });
+```
 
 Wallaby is back.
 

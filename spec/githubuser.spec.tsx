@@ -109,9 +109,10 @@ describe("github user", () => {
         const jsx = await GitHubUsers();
 
         render(jsx);
-        expect(screen.getByText("View on GitHub"));
-            //^^todo figure out how to check for </Link>
-    
+        
+        const links = screen.getAllByRole("link").map(item => item.textContent);
+        expect(links).toContain("View on GitHub")
+       
     });
     it('renders repository', async () => {
 
@@ -128,8 +129,9 @@ describe("github user", () => {
 
         render(jsx);
 
-        expect(screen.getByText("Name"))
-        //better: th > ... 
+        const headers = screen.getAllByRole("columnheader").map( item => item.textContent);
+        expect(headers).toContain("Name")
+  
     });
 
 

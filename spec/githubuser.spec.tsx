@@ -120,7 +120,9 @@ describe("github user", () => {
 
         render(jsx);
 
-        expect(screen.getByText("Go to Repos"))
+        const links = screen.getAllByRole("link").map(item => item.textContent);
+        expect(links).toContain("Go to Repos");
+      
     });  
 
     it('renders using DaisyUI table component', async () => {

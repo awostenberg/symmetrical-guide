@@ -22,9 +22,30 @@ passing the props
     })
 ```
 
-## true links
+## loc.707 true links
 
-sapiential testing reveals an directory structure mistake. ```[users]``` belongs in ```src/app/githubusers/``` To correct
+### directory mistake
+sapiential testing reveals a directory structure mistake. ```[users]``` belongs in ```src/app/githubusers/```. To correct
 ```bash
 git mv src/app/\[user\] src/app/githubusers/\[user\]    
 ```
+(or correct these chapter instructions)
+
+### improve link test
+```typescript
+ const links = screen.getAllByRole("link").map(item => item.textContent);
+        expect(links).toContain("Go to Repos");
+      
+```
+### make it pass 
+with loc.737 corrections to ```githubusers/[user]page.tsx```
+
+```tsx
+    <td>
+        <Link href={`githubusers/${user.login}`} className="btn btn-link">
+        Go to Repos
+        </Link>
+    </td>
+    
+```
+

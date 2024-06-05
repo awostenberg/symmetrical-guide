@@ -48,11 +48,15 @@ const GitHubUsers = async () => {
                                 </td>
                                 <td>
                                     <Link href={user.html_url} className="btn btn-link">
-                                    View on GitHub
+                                        View on GitHub
                                     </Link>
-                                
+
                                 </td>
-                                <td>Go to Repos</td>
+                                <td>
+                                    <Link href={`githubusers/${user.login}`} className="btn btn-link">
+                                    Go to Repos
+                                    </Link>
+                                </td>
                             </tr>
                         ))}
 

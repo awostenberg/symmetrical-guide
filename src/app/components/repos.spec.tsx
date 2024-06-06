@@ -14,9 +14,9 @@ describe('repos component', () => {
         render(<Repos user="greg" />);
 
         expect(screen.getByRole('heading').textContent).toContain('Repos for greg')
-        //todo redo above -- the Repos returns json not jsx; it is called repos.JSX in fact. 
-        //The actual render is called UserReposPage and matches above.
-        
+        //todo redo above -- the Repos returns json not jsx; it is called repos.ts in fact to signal that -- not tsx. 
+        //The actual render is called UserReposPage and matches above but is /not/ in the app/components directory.
+
     });
 
 

@@ -1,19 +1,34 @@
 import { render, screen } from "@testing-library/react";
 import Repos from './repos';
 
+import greg from './greg.spec.sample.json'; // sampled from https://api.github.com/users/greg/repos
+
 describe('repos component', () => {
 
     it.todo('fetches real greg (contract integration test)');
-        // see https://martinfowler.com/bliki/ContractTest.html
-    
+    // see https://martinfowler.com/bliki/ContractTest.html
+
     it.todo('fetches and renders zero repo');    //that /and/ is a clue -- not a single responsibility
-    it('fetches and renders one repo greg', () => {
-     
-        render(<Repos user="greg" />);     
+    it('renders headline greg', () => {
+
+        render(<Repos user="greg" />);
 
         expect(screen.getByRole('heading').textContent).toContain('Repos for greg')
-
+        //todo redo above -- the Repos returns json not jsx; it is called repos.JSX in fact. 
+        //The actual render is called UserReposPage and matches above.
+        
     });
-    it.todo('renders many repo greg');  
+
+
+    it('fetches and renders one repo', () => {
+        //arrange; set the mock. 
+
+        //act
+        render(<Repos user="greg" />);
+
+        //assert
+    })
+
+    it.todo('renders many repo greg');
     it.todo('renders oops');  // could be no such user, or, less likely, some git problem with good user greg (outage?)
 })

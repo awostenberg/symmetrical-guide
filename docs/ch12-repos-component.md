@@ -39,7 +39,7 @@ describe('repos component', () => {
 
 How to apply *i* in [ZOMBIES](https://blog.wingman-sw.com/tdd-guided-by-zombies) and program to the interface?
 
-But first, maybe write this, grab a snapshot of output [api.github.com/users/greg](https://api.github.com/users/greg), then redo tdd?
+But first, maybe write this, grab a snapshot of output [api.github.com/users/greg](https://api.github.com/users/greg/repos), then redo tdd?
 
 I want to program to an interface... and that component will implement the interface, so will my hardcoded one (the one greg)... Things I yet don't understand well enough to write the test:
 1. typescript interface
@@ -113,3 +113,59 @@ But does it pass *all* the tests -- even compiler warnings? No. Notice the compi
 
 Commit unit with F1 notation. "many more smaller steps" as [Geepaw](https://www.geepawhill.org/series/many-more-much-smaller-steps/) says.
 
+## one greg fetched
+
+"we should see the users repositories logged in the console" - Lim
+
+Noice that ```repos.tsx``` does not return repositories. Here Lim has us write the fetch, log to console, and inspect that for expectation.   Reading ahead I see he's going to have us revise ```repos.tsx``` to render a table of the ```resp.name``` and ```repo.description```. There is the fetch, and render (it's in the test name fetch and render) ... and it would be good to separate the two. Maybe I'll make that a refactor.
+
+
+This console.log is scaffolding. How do it the TDD way? What's the simplest thing that could possibly work?
+
+
+
+
+
+Well I could assert a known word is somewhere in the text. And have ```repos.tsx``` return raw json in the headline or near. This would cause me to get the fetch mock right. And then I could 
+
+a) write another test to check for rendering as a table 
+b) revise this test to check for rendering as a table
+c) take it as a refactoring to render it as a table -- do this from a green test.
+
+I see (a) is the simplest thing that could work right now with what I know. Let's do that.
+
+### loc.783 json sampler to drive this out
+first sample file
+```bash
+touch src/app/components/greg.sample.json 
+```
+
+populate that with the first item in https://api.github.com/users/greg/repos
+```json
+[
+  {
+    "id": 169835898,
+    "node_id": "MDEwOlJlcG9zaXRvcnkxNjk4MzU4OTg=",
+    "name": "CodableInterception",
+    ...
+  }
+```
+
+
+```tsx
+import greg from './greg.spec.sample.json'; // sampled from https://api.github.com/users/greg/repos
+```
+
+
+Oh, wait, I realized I forgot to plumb this out to the navigation page so I could (loc.809)...
+```tsx
+import Repos from "../../components/Repos";
+
+```
+
+Retrace steps.. plumb that out? Lim's "testing oru app" and "we shoudl see the user's repositories" is from the UI (which needs to be plumbed) and not from here... But I'm writing these low level lines for ```fetchRepos``` "the tdd way", so have yet to write them... .. return to regular program.. that code 
+
+
+Ok and now I see that what Lim called the component -- the thing I jsut wrote called ... does /not/ return jsx, but json. ```fetchRepos```. and that is why it's over there in components. It does not write the div stuff, the jsx. Backtrack to fix that.  But on loc.783 he calls it ```Repos.jsx``` 
+
+I shall need to backtrack a little.  This at least settles the fetch and render separation of concerns question. I misread teacher Lim. Nothing wasted. This shall be a refactor.  Start with the test? (We're art a green state)

@@ -169,3 +169,31 @@ Retrace steps.. plumb that out? Lim's "testing oru app" and "we shoudl see the u
 Ok and now I see that what Lim called the component -- the thing I jsut wrote called ... does /not/ return jsx, but json. ```fetchRepos```. and that is why it's over there in components. It does not write the div stuff, the jsx. Backtrack to fix that.  But on loc.783 he calls it ```Repos.jsx``` 
 
 I shall need to backtrack a little.  This at least settles the fetch and render separation of concerns question. I misread teacher Lim. Nothing wasted. This shall be a refactor.  Start with the test? (We're art a green state)
+
+### loc.783 json fetch mock again
+I note it passes in wallaby but not command line which gives 
+the error *fetch is not defined *
+
+ This is an async not answering a jsx. Also I'm using fake bob https://api.github.com/users/bob/repos and it passes. (a missing semicolin fixed npm run dev; npm test still failing; Wallaby is more forgiving)
+
+```ts
+    app/components/repos.tsx:14
+        const res = await fetch(`https://api.github.com/users/${user}/repos`);
+                    ^
+
+    ReferenceError: fetch is not defined
+```
+
+#### why command line fails fetch?
+and this error is now coming from githubuser.spec.tsx as well
+
+
+this was caused by the ```githubusers[user]page.tsx``` importing ```component/repos```. Revert that and all tests pass from jest command line. Bisect. It was this line:
+```tsx
+    const result =  Repos({user:user});
+```
+That needs to be an await. Note that typing the result would have caused a compiler warning instead of this runtime error with *fetch not implemented* 
+```tsx
+   const result:[any] = Repos({user:user});
+```
+

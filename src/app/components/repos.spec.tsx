@@ -9,7 +9,7 @@ describe('repos component', () => {
     it.todo('fetches and renders zero repo');    //that /and/ is a clue -- not a single responsibility
     it('fetches and renders one repo greg', () => {
      
-        render(<Repos user='greg' />);      //single or double? not sure; it is html
+        render(<Repos user="greg" />);     
 
         expect(screen.getByRole('heading').textContent).toContain('Repos for greg')
 

@@ -19,10 +19,14 @@ describe('user repos page', () => {
 
         expect(screen.getByRole('heading').textContent).toContain('User greg Repo Page')
 
-        //todo make it a table and check it's column header, table row
-        const paragraphs = screen.getAllByRole('paragraph').map(item=>item.textContent);;
-        expect(paragraphs[0]).toContain("CodableInterception");
-        expect(paragraphs[1]).toContain("A generalised library");
-       
+
+        const headers = screen.getAllByRole("columnheader").map( item => item.textContent);
+        expect(headers).toContain("Repo Name")
+        const rows = screen.getAllByRole('row');
+        expect(rows[1].textContent).toContain("CodableInterception");
+        
+      
+        expect(rows[1].textContent).toContain("A generalised library")
+  
     })
 })

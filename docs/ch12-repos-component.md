@@ -197,3 +197,112 @@ That needs to be an await. Note that typing the result would have caused a compi
    const result:[any] = Repos({user:user});
 ```
 
+### table loc.838
+into ```userrepo.spec.ts```. First, the test needs to now be async with the mock the underlying ```Repos``` is async.
+
+```tsx
+it('renders the page', async () => {
+
+        fetchMock.resetMocks();
+        fetchMock.mockResponseOnce(JSON.stringify(greg));
+
+        const u = {'user':'greg'}
+        const jsx = await UserRepos({'params':u}) 
+        render(jsx);
+}
+```
+Then, I tried tabular info rendered as a series of paragraph, no table, plain text. 
+
+```tsx
+      const paragraphs = screen.getAllByRole('paragraph').map(item=>item.textContent);;
+      expect(paragraphs[0]).toContain("CodableInterception");
+      expect(paragraphs[1]).toContain("A generalised library");
+```
+failing; and the cut ```UserRepos```:
+```tsx
+const UserRepos = async ({ params: { user } }) => {
+    const result: [any] = await Repos({ user: user });
+
+    return (
+        <div>
+            <h1>User {user} Repo Page</h1>
+            {result.map(item => (
+                <div>
+                    <p>{item.name}</p>
+                    <p>{item.description}</p>
+                </div>
+
+            ))}
+
+
+        </div>
+
+    );
+};
+```
+passes; small commit. 
+
+### real table
+refactor towards real table. Except the test is quite changed, as it looks to user changes, so not a refactoring. Maybe should have begun straightaway with a table?
+
+First the failing test:
+```tsx
+ const headers = screen.getAllByRole("columnheader").map( item => item.textContent);
+       
+```
+Get that to pass quickly by pasting DaisyUI table "as is" into ```UserRepos```
+
+Then headline
+```tsx
+  expect(headers).toContain("Repo Name")
+```
+Straightforward change to spot in cut ```UserRepos```
+```tsx
+     <th>Repo Name</th>
+```
+
+Now other headline? Or table rows? Rows, want to tackle the tricky first.How to say what I want int he test? Simplest thing?
+
+How about
+```tsx
+        const rows = screen.getAllByRole('row');
+        expect(rows[1].textContent).toContain("CodableInterception");
+```
+And to pass I can hardcode it in the cut, and the description ("A generalised library.."), and the row data. 
+
+Now, sitting on green, I realize I can slightly unhardcode.
+
+```tsx
+    {/* row 1 */}
+      <tr>
+
+        <td>{result[0].name}</td>
+        <td>{result[0].description}</td>
+
+      </tr>
+```
+
+Creeping up on that loop. Working from a green test, I can take it as a refactoring. First, a loop
+```tsx
+    {result.map(item => (
+        <tr>
+            <td>{result[0].name}</td>
+            <td>{result[0].description}</td>
+        </tr>
+    ))}
+```
+
+Finally
+```tsx
+    {result.map(item => (
+        <tr>
+            <td>{item.name}</td>
+            <td>{item.description}</td>
+        </tr>
+    ))}
+
+```
+
+Final sapiential test. Looks good. 
+
+
